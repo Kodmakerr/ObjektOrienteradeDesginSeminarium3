@@ -3,9 +3,10 @@ package se.kth.iv1350.Controller;
 import se.kth.iv1350.DTO.ItemDTO;
 import se.kth.iv1350.DTO.ReceiptDTO;
 import se.kth.iv1350.DTO.SaleDTO;
-import se.kth.iv1350.Integration.ExternalAccountingSystem;
-import se.kth.iv1350.Integration.Inventory;
+
 import se.kth.iv1350.Model.Saleprocessing;
+import se.kth.iv1350.integration.ExternalAccountingSystem;
+import se.kth.iv1350.integration.Inventory;
 
 public class Controller {
 	

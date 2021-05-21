@@ -1,4 +1,4 @@
-package se.kth.iv1350.Integration;
+package se.kth.iv1350.integration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
