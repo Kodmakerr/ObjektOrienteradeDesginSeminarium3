@@ -3,10 +3,13 @@ package se.kth.iv1350.Controller;
 import se.kth.iv1350.DTO.ItemDTO;
 import se.kth.iv1350.DTO.ReceiptDTO;
 import se.kth.iv1350.DTO.SaleDTO;
-
+import se.kth.iv1350.Model.Observer;
 import se.kth.iv1350.Model.Saleprocessing;
 import se.kth.iv1350.integration.ExternalAccountingSystem;
 import se.kth.iv1350.integration.Inventory;
+import se.kth.iv1350.integration.Itemnotexistexception;
+import se.kth.iv1350.integration.Printer;
+import se.kth.iv1350.integration.databasefailureexception;
 
 public class Controller {
 	
@@ -34,9 +37,11 @@ public class Controller {
 	 * @param quantity shows how many item is in the sale.
 	 * 
 	 * @return itemDTO returns the information about what type of item it's and how many item.
+	 * @throws databasefailureexception 
+	 * @throws Itemnotexistexception 
 	 */
 	
-	public ItemDTO scanItem(int quantity, int itemIdentifier) 
+	public ItemDTO scanItem(int quantity, int itemIdentifier) throws Itemnotexistexception, databasefailureexception 
 	{
 		
 		ItemDTO itemDTO = inventory.getItemDTO(itemIdentifier);
@@ -52,6 +57,16 @@ public class Controller {
 	public void beginSale() {
 		
 	  saleproccessing = new Saleprocessing(); 
+	}
+	
+	/**
+	 * Gets information about the current sale.
+	 * 
+	 * @return The information about the sale
+	 * 
+	 */
+	public SaleDTO getSaleDTO() {
+		return saleproccessing.getSaleDTO();
 	}
 	
 	/**
@@ -84,9 +99,19 @@ public class Controller {
 		
 	}
 	
-	
+
+	/**
+	 * Adds a observer to saleProcessing.
+	 *  
+	 * @param observer The observer to be added
+	 * 
+	 */
+	public void addObserver(Observer observer) {
+		saleproccessing.addObserver(observer);
+	}
 	
 
-	}
+	
+}
 
 

@@ -8,9 +8,36 @@ import se.kth.iv1350.DTO.QuantityDTO;
 import se.kth.iv1350.DTO.ReceiptDTO;
 import se.kth.iv1350.DTO.SaleDTO;
 
+/**
+ * Creates a instance to process a sale.
+ * 
+ */
+
 public class Saleprocessing 
 {
 	private List<QuantityDTO> listofItem;
+	private List<Observer> observer = new ArrayList<>();
+	
+	private void notifyObserver() 
+	
+	{	
+			for (Observer obs : observer ) 
+			{
+				obs.newobserver(getSaleDTO());
+			}
+		
+	}
+	
+	/**
+	 * Adds a observer. 
+	 * 
+	 * @Param observer the observer to be added
+	 */
+	
+	public void addObserver (Observer observer) {
+		this.observer.add(observer);
+	}
+	
 	
 	/**
 	 * Saleprocessing create instance of saleproccessing. 
@@ -24,14 +51,12 @@ public class Saleprocessing
 	}
 	
 	/**
-	 * ScanItem add items to the sale list.
-	 * 
-	 * @param itemDTO is the item that adds to the list.
-	 * 
-	 * @param quantity shows how many items have been added to the list. 
+	 * Adds a scanned item.
+	 *  
+	 * @param itemDTO The item to be added
+	 * @param quantity The quantity of item added
 	 * 
 	 */
-	
 	public void scanItem(ItemDTO itemDTO, int quantity)
 	{
 		
@@ -59,6 +84,7 @@ public class Saleprocessing
 	
 	public SaleDTO endSale()
 	{
+		notifyObserver();
 		return getSaleDTO();
 	}
 	
@@ -105,4 +131,8 @@ public class Saleprocessing
 		
 		return saleDTO;
 	}
+
 }
+
+
+

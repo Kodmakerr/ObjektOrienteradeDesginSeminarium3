@@ -32,10 +32,23 @@ public class Inventory {
 	 * @param itemIdentifier The identifier of the item
 	 * 
 	 * @return A item matching the identifier
+	 * @throws Itemnotexistexception 
+	 * @throws databasefailureexception 
 	 */
 	
-	public ItemDTO getItemDTO(int itemIdentifier) 
+	public ItemDTO getItemDTO(int itemIdentifier) throws Itemnotexistexception, databasefailureexception 
 	{	
+		
+		if(itemIdentifier == 10)
+		{
+			throw new databasefailureexception("A database failure exception");
+		}
+		
+		if(items.containsKey(itemIdentifier) == false)
+		{
+			throw new Itemnotexistexception("Item not Found");
+		}
+		
 		return items.get(itemIdentifier);
 	}
 	

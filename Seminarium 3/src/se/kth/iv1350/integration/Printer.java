@@ -2,6 +2,10 @@ package se.kth.iv1350.integration;
 
 import se.kth.iv1350.DTO.ReceiptDTO;
 
+/**
+ * Creates a new instance of the printer.
+ * 
+ */
 
 public class Printer {
 	
